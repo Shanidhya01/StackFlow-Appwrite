@@ -1,12 +1,18 @@
-export const runtime = 'nodejs'; // 👈 This is required to fix the build issue on Vercel
+export const runtime = "nodejs"; // ✅ Ensures Node.js runtime (avoids Edge Runtime issues)
 
 import { db, questionCollection } from "@/models/name";
 import { databases } from "@/models/sever/config";
 import React from "react";
 import EditQues from "./EditQues";
+import type { Metadata } from "next"; // optional if you're using metadata
 
-const Page = async ({ params }: { params: { quesId: string; quesName: string } }) => {
-  const question = await databases.getDocument(db, questionCollection, params.quesId);
+interface PageProps {
+  params: Promise<{ quesId: string; quesName: string }>;
+}
+
+const Page = async ({ params }: PageProps) => {
+  const { quesId } = await params;
+  const question = await databases.getDocument(db, questionCollection, quesId);
 
   return <EditQues question={question} />;
 };
