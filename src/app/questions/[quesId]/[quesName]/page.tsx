@@ -1,5 +1,7 @@
+export const runtime = 'nodejs'; // ✅ Force Node.js runtime to avoid Edge issues with node-appwrite
+
 import Answers from "@/components/Answers";
-import Comments from "@/components/Comments"; // fixed typo
+import Comments from "@/components/Comments";
 import { MarkdownPreview } from "@/components/RTE";
 import VoteButtons from "@/components/VoteButtons";
 import Particles from "@/components/magicui/particles";
@@ -199,10 +201,10 @@ const Page = async ({ params }: { params: { quesId: string; quesName: string } }
             </div>
 
             <Comments
-                comments={{ documents: comments, total: comments.length }}
-                className="mt-4"
-                type="question"
-                typeId={question.$id}
+              comments={{ documents: comments, total: comments.length }}
+              className="mt-4"
+              type="question"
+              typeId={question.$id}
             />
 
             <hr className="my-4 border-white/40" />
@@ -210,10 +212,9 @@ const Page = async ({ params }: { params: { quesId: string; quesName: string } }
         </div>
 
         <Answers
-            answers={{ documents: answers, total: answers.length }}
-            questionId={question.$id}
+          answers={{ documents: answers, total: answers.length }}
+          questionId={question.$id}
         />
-
       </div>
     </TracingBeam>
   );

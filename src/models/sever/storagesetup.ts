@@ -1,3 +1,5 @@
+export const runtime = 'nodejs'; // 🛠️ Important for Vercel!
+
 import { Permission } from "node-appwrite";
 import { questionAttachmentBucket } from "../name";
 import { storage } from "./config";
@@ -7,7 +9,6 @@ export default async function getOrCreateStorage() {
     await storage.getBucket(questionAttachmentBucket);
     console.log("Storage Connected");
   } catch (error) {
-    // Log the error to provide context
     console.error("Error connecting to storage:", error);
     try {
       await storage.createBucket(
@@ -25,11 +26,9 @@ export default async function getOrCreateStorage() {
         undefined,
         ["jpg", "png", "gif", "jpeg", "webp", "heic"]
       );
-
       console.log("Storage Created");
       console.log("Storage Connected");
     } catch (error) {
-      // Log the error during storage creation
       console.error("Error creating storage:", error);
     }
   }
