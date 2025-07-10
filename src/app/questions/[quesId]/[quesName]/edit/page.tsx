@@ -4,7 +4,6 @@ import { db, questionCollection } from "@/models/name";
 import { databases } from "@/models/sever/config";
 import React from "react";
 import EditQues from "./EditQues";
-import type { Metadata } from "next"; // optional if you're using metadata
 
 interface PageProps {
   params: Promise<{ quesId: string; quesName: string }>;
